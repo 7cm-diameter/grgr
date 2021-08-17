@@ -1,18 +1,19 @@
 """ A module where the core classes and functions of `ggplot2`  """
 from copy import copy
-from typing import Optional
+from typing import Optional, Union
 
 import grgr.dev.typing as tp
 from grgr import _R
 from grgr.dev import join_as_rargs
+from numpy import ndarray
 from pandas import DataFrame
 
 
 class Aesthetic(tp.Tor):
     # TODO: Allow x and y to be given vectors.
     def __init__(self,
-                 x: Optional[str] = None,
-                 y: Optional[str] = None,
+                 x: Optional[Union[str, ndarray]] = None,
+                 y: Optional[Union[str, ndarray]] = None,
                  **kwargs):
         self._s = str()
         pyargs = locals()

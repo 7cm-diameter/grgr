@@ -1,7 +1,8 @@
-from typing import Optional
+from typing import Optional, Union
 
 from grgr.ggplot2.basic import Aesthetic, GGPlot
 from grgr.ggplot2.layer import Layer
+from numpy import ndarray
 from pandas import DataFrame
 
 
@@ -12,8 +13,8 @@ def ggplot(data: Optional[DataFrame] = None,
     return GGPlot(data, mapping, **kwargs)
 
 
-def aes(x: Optional[str] = None,
-        y: Optional[str] = None,
+def aes(x: Optional[Union[str, ndarray]] = None,
+        y: Optional[Union[str, ndarray]] = None,
         **kwargs) -> Aesthetic:
     return Aesthetic(x, y, **kwargs)
 
