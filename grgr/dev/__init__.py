@@ -20,7 +20,7 @@ def _id_to_alphabet(x: Any) -> str:
     return "".join((map(lambda i: chr(ord("@") + int(i) + 1), str(id_))))
 
 
-def _format_as_arg(k: str, v: Any, ignored: List[str]) -> Optional[str]:
+def _format_as_kwarg(k: str, v: Any, ignored: List[str]) -> Optional[str]:
     if v is None or k in ignored:
         return None
     if _is_ndarray(v) or _is_dataframe(v):
@@ -30,14 +30,33 @@ def _format_as_arg(k: str, v: Any, ignored: List[str]) -> Optional[str]:
     return f"{k}={v}"
 
 
+def _format_as_posarg(v: Any) -> str:
+    if _is_ndarray(v) or _is_dataframe(v):
+        varname = _id_to_alphabet(v)
+        _R.assign(varname, v)
+        return varname
+    return str(v)
+
+
 def _filter_none(x: Iterable[Optional[Any]]) -> filter:
     return filter(lambda x_: x_ is not None, x)
 
 
-def join_as_rargs(d: Dict, ignored: List[str] = []) -> tp.RCode:
+def dict_to_rargs(d: Dict, ignored: List[str] = []) -> Optional[tp.RCode]:
     # following three variables are ignored by defalut
     ignored.extend(["ignores", "self", "args", "kwargs"])
     _fargs: map[Optional[str]] = map(
-        lambda kv: _format_as_arg(kv[0], kv[1], ignored), d.items())
+        lambda kv: _format_as_kwarg(kv[0], kv[1], ignored), d.items())
     fargs = list(_filter_none(_fargs))
-    return ",".join(fargs)
+    s = ",".join(fargs)
+    if len(s) == 0:
+        return None
+    return s
+
+
+def iter_to_rargs(x: Iterable) -> Optional[tp.RCode]:
+    fargs: map[str] = map(_format_as_posarg, x)
+    s = ",".join(fargs)
+    if len(s) == 0:
+        return None
+    return s
