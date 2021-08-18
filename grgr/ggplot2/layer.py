@@ -3,7 +3,7 @@ from copy import copy
 from typing import Optional
 
 import grgr.dev.typing as tp
-from grgr.dev import join_as_rargs
+from grgr.dev import dict_to_rargs
 from grgr.ggplot2.basic import Aesthetic
 from pandas import DataFrame
 
@@ -17,7 +17,7 @@ class Layer(tp.Join):
         self._s = str()
         pyargs = locals()
         pyargs.update(kwargs)
-        rargs = join_as_rargs(pyargs, ["graphtype"])
+        rargs = dict_to_rargs(pyargs, ["graphtype"])
         self._s = f"{graphtype}({rargs})"
 
     def __repr__(self) -> str:

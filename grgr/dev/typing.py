@@ -1,5 +1,9 @@
 """ A module where types, interfaces, and classes are defined """
 from abc import ABCMeta, abstractmethod
+from typing import TypeVar
+
+T = TypeVar("T")
+U = TypeVar("U")
 
 RCode = str
 

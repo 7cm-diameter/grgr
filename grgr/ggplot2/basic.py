@@ -4,7 +4,7 @@ from typing import Optional, Union
 
 import grgr.dev.typing as tp
 from grgr import _R
-from grgr.dev import join_as_rargs
+from grgr.dev import dict_to_rargs
 from numpy import ndarray
 from pandas import DataFrame
 
@@ -18,7 +18,7 @@ class Aesthetic(tp.Tor):
         self._s = str()
         pyargs = locals()
         pyargs.update(kwargs)
-        rargs = join_as_rargs(pyargs)
+        rargs = dict_to_rargs(pyargs)
         self._s = f"aes({rargs})"
 
     def __repr__(self) -> str:
@@ -36,7 +36,7 @@ class GGPlot(tp.Join, tp.Show):
         self._s = str()
         pyargs = locals()
         pyargs.update(kwargs)
-        rargs = join_as_rargs(pyargs)
+        rargs = dict_to_rargs(pyargs)
         self._s = f"ggplot({rargs})"
 
     def __repr__(self) -> str:
