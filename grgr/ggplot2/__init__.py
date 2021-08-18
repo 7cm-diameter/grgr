@@ -137,11 +137,11 @@ def lims(x: Optional[Tuple[T, T]], y: Optional[Tuple[U, U]]) -> Appearance:
 
 # TODO: Use `xlim` and `ylim` instead of `lims`.
 def xlim(x: Tuple[T, T]) -> Appearance:
-    return Appearance("lims", x=array(x))
+    return Appearance("xlim", array(x))
 
 
 def ylim(y: Tuple[T, T]) -> Appearance:
-    return Appearance("lims", y=array(y))
+    return Appearance("ylim", array(y))
 
 
 def scale_color_continuous(colorscale: str = '"gradient"') -> Appearance:
