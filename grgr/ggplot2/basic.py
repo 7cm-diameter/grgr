@@ -18,7 +18,10 @@ class Aesthetic(tp.Tor):
         pyargs = locals()
         pyargs.update(kwargs)
         rargs = dict_to_rargs(pyargs)
-        self._s = f"aes({rargs})"
+        if rargs is not None:
+            self._s = f"aes({rargs})"
+        else:
+            self._s = "aes()"
 
     def __repr__(self) -> str:
         return self._s
@@ -36,7 +39,10 @@ class GGPlot(tp.Join, tp.Show):
         pyargs = locals()
         pyargs.update(kwargs)
         rargs = dict_to_rargs(pyargs)
-        self._s = f"ggplot({rargs})"
+        if rargs is not None:
+            self._s = f"ggplot({rargs})"
+        else:
+            self._s = "ggplot()"
 
     def __repr__(self) -> str:
         self.show()

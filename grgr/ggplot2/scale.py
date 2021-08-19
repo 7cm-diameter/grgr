@@ -14,7 +14,10 @@ class Appearance(tp.Join):
         posargs = iter_to_rargs(args)
         kwargs = dict_to_rargs(kwargs, ["name"])
         rargs = ",".join(_filter_none([reqargs, posargs, kwargs]))
-        self._s = f"{name}({rargs})"
+        if rargs is not None:
+            self._s = f"{name}({rargs})"
+        else:
+            self._s = f"{name}()"
 
     def __repr__(self) -> str:
         return self._s

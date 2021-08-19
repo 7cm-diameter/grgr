@@ -18,7 +18,10 @@ class Layer(tp.Join):
         pyargs = locals()
         pyargs.update(kwargs)
         rargs = dict_to_rargs(pyargs, ["graphtype"])
-        self._s = f"{graphtype}({rargs})"
+        if rargs is not None:
+            self._s = f"{graphtype}({rargs})"
+        else:
+            self._s = f"{graphtype}()"
 
     def __repr__(self) -> str:
         return self._s
