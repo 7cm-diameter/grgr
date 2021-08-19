@@ -135,7 +135,6 @@ def lims(x: Optional[Tuple[T, T]], y: Optional[Tuple[U, U]]) -> Appearance:
     return Appearance("lims", x=array(x), y=array(y))
 
 
-# TODO: Use `xlim` and `ylim` instead of `lims`.
 def xlim(x: Tuple[T, T]) -> Appearance:
     return Appearance("xlim", array(x))
 

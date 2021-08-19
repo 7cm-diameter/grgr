@@ -10,7 +10,6 @@ from pandas import DataFrame
 
 
 class Aesthetic(tp.Tor):
-    # TODO: Allow x and y to be given vectors.
     def __init__(self,
                  x: Optional[Union[str, ndarray]] = None,
                  y: Optional[Union[str, ndarray]] = None,
