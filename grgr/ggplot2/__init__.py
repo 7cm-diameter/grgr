@@ -1,7 +1,8 @@
-from typing import Optional, Tuple, Union
+from typing import List, Optional, Tuple, Union
 
 from grgr.dev.typing import T, U
 from grgr.ggplot2.basic import Aesthetic, GGPlot
+from grgr.ggplot2.facet import Facet
 from grgr.ggplot2.layer import Layer
 from grgr.ggplot2.scale import Appearance
 from numpy import array, ndarray, str_
@@ -191,3 +192,12 @@ def scale_color_gradientn(colors: NDArray[str_], **kwargs) -> Appearance:
 
 def scale_fill_gradientn(colors: NDArray[str_], **kwargs) -> Appearance:
     return Appearance("scale_fill_gradientn", colors=colors, **kwargs)
+
+
+# Facets
+def facet_grid(*args, **kwargs) -> Facet:
+    return Facet("facet_grid", *args, **kwargs)
+
+
+def facet_wrap(*args, **kwargs) -> Facet:
+    return Facet("facet_wrap", *args, **kwargs)
