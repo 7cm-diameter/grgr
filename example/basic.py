@@ -60,4 +60,4 @@ plot + g.theme_bw() + \
             axis_title=g.element_text(size=20))
 
 # You can save the figure by `ggsave`
-g.ggsave("./sample.jpg", plot)
+g.ggsave('"./sample.jpg"', plot)
