@@ -43,6 +43,10 @@ def _format_as_posarg(v: Any) -> str:
         varname = _id_to_alphabet(v)
         _R.assign(varname, v)
         return varname
+    if _is_ggplot(v):
+        varname = _id_to_alphabet(v)
+        _R(f"{varname} <- {v.tor()}")
+        return varname
     return str(v)
 
 
