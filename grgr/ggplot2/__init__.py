@@ -5,6 +5,7 @@ from grgr.ggplot2.basic import Aesthetic, GGPlot
 from grgr.ggplot2.facet import Facet
 from grgr.ggplot2.layer import Layer
 from grgr.ggplot2.scale import Appearance
+from grgr.ggplot2.theme import Theme, ThemeElement
 from numpy import array, ndarray, str_
 from numpy.typing import NDArray
 from pandas import DataFrame
@@ -201,3 +202,65 @@ def facet_grid(*args, **kwargs) -> Facet:
 
 def facet_wrap(*args, **kwargs) -> Facet:
     return Facet("facet_wrap", *args, **kwargs)
+
+
+# Themes
+def theme(**kwargs):
+    return Theme("theme", **kwargs)
+
+
+def theme_bw(**kwargs):
+    return Theme("theme_bw", **kwargs)
+
+
+def theme_classic(**kwargs):
+    return Theme("theme_classic", **kwargs)
+
+
+def margin(top: float = 0.,
+           right: float = 0.,
+           bottom: float = 0.,
+           left: float = 0.,
+           unit: str = "pt") -> ThemeElement:
+    return ThemeElement("margin", t=top, r=right, b=bottom, l=left, unit=unit)
+
+
+def element_blank():
+    return ThemeElement("element_blank")
+
+
+def element_rect(fill: Optional[str] = None,
+                 color: Optional[str] = None,
+                 size: Optional[float] = None,
+                 linetype: Optional[str] = None,
+                 **kwargs):
+    return ThemeElement("element_rect",
+                        fill=fill,
+                        color=color,
+                        size=size,
+                        linetype=linetype,
+                        **kwargs)
+
+
+def element_line(color: Optional[str] = None,
+                 size: Optional[float] = None,
+                 linetype: Optional[str] = None,
+                 **kwargs):
+    return ThemeElement("element_line",
+                        color=color,
+                        size=size,
+                        linetype=linetype,
+                        **kwargs)
+
+
+def element_text(family: Optional[str] = None,
+                 color: Optional[str] = None,
+                 size: Optional[float] = None,
+                 angle: Optional[float] = None,
+                 **kwargs):
+    return ThemeElement("element_text",
+                        family=family,
+                        color=color,
+                        size=size,
+                        angle=angle,
+                        **kwargs)
