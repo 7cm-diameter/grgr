@@ -3,7 +3,6 @@ from typing import Any, Dict, Iterable, List, Optional
 
 import grgr.dev.typing as tp
 from grgr import _R
-# from grgr.ggplot2.basic import GGPlot
 from numpy import ndarray
 from pandas import DataFrame
 
