@@ -3,6 +3,7 @@ from typing import Any, Dict, Iterable, List, Optional
 
 import grgr.dev.typing as tp
 from grgr import _R
+# from grgr.ggplot2.basic import GGPlot
 from numpy import ndarray
 from pandas import DataFrame
 
@@ -13,6 +14,10 @@ def _is_ndarray(x: Any) -> bool:
 
 def _is_dataframe(x: Any) -> bool:
     return isinstance(x, DataFrame)
+
+
+def _is_ggplot(x: Any) -> bool:
+    return isinstance(x, tp.Show)
 
 
 def _id_to_alphabet(x: Any) -> str:
@@ -26,6 +31,10 @@ def _format_as_kwarg(k: str, v: Any, ignored: List[str]) -> Optional[str]:
     if _is_ndarray(v) or _is_dataframe(v):
         varname = _id_to_alphabet(v)
         _R.assign(varname, v)
+        return f"{k}={varname}"
+    if _is_ggplot(v):
+        varname = _id_to_alphabet(v)
+        _R(f"{varname} <- {v.tor()}")
         return f"{k}={varname}"
     return f"{k}={v}"
 

@@ -1,5 +1,7 @@
-from typing import List, Optional, Tuple, Union
+from typing import Optional, Tuple, Union
 
+from grgr import _R
+from grgr.dev import dict_to_rargs
 from grgr.dev.typing import T, U
 from grgr.ggplot2.basic import Aesthetic, GGPlot
 from grgr.ggplot2.facet import Facet
@@ -22,6 +24,20 @@ def aes(x: Optional[Union[str, ndarray]] = None,
         y: Optional[Union[str, ndarray]] = None,
         **kwargs) -> Aesthetic:
     return Aesthetic(x, y, **kwargs)
+
+
+def ggsave(filename: str,
+           plot: Optional[GGPlot] = None,
+           width: Optional[int] = None,
+           height: Optional[int] = None,
+           dpi: Optional[int] = None,
+           **kwargs):
+    s = str()
+    pyargs = locals()
+    pyargs.update(**kwargs)
+    rargs = dict_to_rargs(pyargs, ["s"])
+    rcode = f"ggsave({rargs})"
+    _R(rcode)
 
 
 # Layer
