@@ -10,7 +10,7 @@ from pandas import DataFrame
 
 class Layer(tp.Join):
     def __init__(self,
-                 graphtype: str,
+                 name: str,
                  data: Optional[DataFrame] = None,
                  mapping: Optional[Aesthetic] = None,
                  **kwargs):
@@ -19,9 +19,9 @@ class Layer(tp.Join):
         pyargs.update(kwargs)
         rargs = dict_to_rargs(pyargs, ["graphtype"])
         if rargs is not None:
-            self._s = f"{graphtype}({rargs})"
+            self._s = f"{name}({rargs})"
         else:
-            self._s = f"{graphtype}()"
+            self._s = f"{name}()"
 
     def __repr__(self) -> str:
         return self._s
