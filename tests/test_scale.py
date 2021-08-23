@@ -10,7 +10,7 @@ A_ = array(['"foo"', '"bar"'])
 
 @pytest.mark.parametrize("args, kwargs, answer", [
     (('"foo"', 2), {}, 'test("foo",2)'),
-    ((tuple(A_)), {}, f"test({d._id_to_alphabet(A_)})"),
+    ((A_, '"foo"'), {}, f'test({d._id_to_alphabet(A_)},"foo")'),
     ((), {
         "foo": 2,
         "bar": A_
@@ -18,4 +18,4 @@ A_ = array(['"foo"', '"bar"'])
     ((), {}, "test()"),
 ])
 def test_appearance(args: Tuple[Any], kwargs: Dict[str, Any], answer: str):
-    print(Appearance("test", *args, **kwargs).tor())
+    assert Appearance("test", *args, **kwargs).tor() == answer
