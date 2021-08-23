@@ -17,7 +17,7 @@ g.ggplot(df) + \
     g.geom_point(mapping=g.aes("x", "y"))
 
 g.ggplot() + \
-    g.geom_point(df, mapping=g.aes("x", "y"))
+    g.geom_point(df, g.aes("x", "y"))
 
 # You can also use vectors as arguments of `aes`.
 g.ggplot() + \
