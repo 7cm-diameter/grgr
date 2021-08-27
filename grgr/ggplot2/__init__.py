@@ -714,12 +714,44 @@ def theme(**kwargs):
     return Theme("theme", **kwargs)
 
 
+def theme_gray(**kwargs):
+    return Theme("theme_gray", **kwargs)
+
+
+def theme_grey(**kwargs):
+    return Theme("theme_grey", **kwargs)
+
+
 def theme_bw(**kwargs):
     return Theme("theme_bw", **kwargs)
 
 
+def theme_linedraw(**kwargs):
+    return Theme("theme_linedraw", **kwargs)
+
+
+def theme_light(**kwargs):
+    return Theme("theme_light", **kwargs)
+
+
+def theme_dark(**kwargs):
+    return Theme("theme_dark", **kwargs)
+
+
+def theme_minimal(**kwargs):
+    return Theme("theme_minimal", **kwargs)
+
+
 def theme_classic(**kwargs):
     return Theme("theme_classic", **kwargs)
+
+
+def theme_void(**kwargs):
+    return Theme("theme_void", **kwargs)
+
+
+def theme_replace(**kwargs):
+    return Theme("theme_replace", **kwargs)
 
 
 def margin(top: float = 0.,
